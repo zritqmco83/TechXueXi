@@ -2,6 +2,8 @@
 goto start
 
 
+
+
 :color_red
 echo [31m[*] %1[0m
 exit /b 0
@@ -19,11 +21,11 @@ echo [34m[*] %1[0m
 exit /b 0
 
 :replace_dir
-call :color_yellow ÖØÒªĞÅÏ¢£º
-echo ´ËÄ¿Â¼ÒÑ×÷·Ï£¬Çë×ªµ½ TechXuexi-master-clone Ä¿Â¼
-echo ÒÑ×Ô¶¯ÎªÄú¸´ÖÆ user ÎÄ¼ş¼ĞºÍ chrome ÎÄ¼ş¼Ğ£¬´ËÎªÓÃ»§Êı¾İ£¬
-echo Îª±£Ö¤ÎŞÎóÄú¿ÉÔÙÈ·ÈÏÒ»ÏÂÄ¿Â¼ÄÚÊÇ·ñÒÑ¾­ÓĞÕâÁ½¸öÎÄ¼ş¼Ğ
-echo Äú¿É½« TechXuexi-master-clone ÀïµÄËùÓĞÄÚÈİ£¨º¬.gitÎÄ¼ş¼Ğ£©Ìæ»»´ËÎÄ¼ş¼ĞµÄËùÓĞÄÚÈİ
+call :color_yellow é‡è¦ä¿¡æ¯ï¼š
+echo æ­¤ç›®å½•å·²ä½œåºŸï¼Œè¯·è½¬åˆ° TechXuexi-master-clone ç›®å½•
+echo å·²è‡ªåŠ¨ä¸ºæ‚¨å¤åˆ¶ user æ–‡ä»¶å¤¹å’Œ chrome æ–‡ä»¶å¤¹ï¼Œæ­¤ä¸ºç”¨æˆ·æ•°æ®ï¼Œ
+echo ä¸ºä¿è¯æ— è¯¯æ‚¨å¯å†ç¡®è®¤ä¸€ä¸‹ç›®å½•å†…æ˜¯å¦å·²ç»æœ‰è¿™ä¸¤ä¸ªæ–‡ä»¶å¤¹
+echo æ‚¨å¯å°† TechXuexi-master-clone é‡Œçš„æ‰€æœ‰å†…å®¹ï¼ˆå«.gitæ–‡ä»¶å¤¹ï¼‰æ›¿æ¢æ­¤æ–‡ä»¶å¤¹çš„æ‰€æœ‰å†…å®¹
 exit /b 0
 
 
@@ -43,7 +45,7 @@ set file_path=%~dp0
 cd "%file_path%"
 
 :test_have_git
-call :color_green ¼ì²é´ËµçÄÔÓĞÎŞ°²×°git
+call :color_green æ£€æŸ¥æ­¤ç”µè„‘æœ‰æ— å®‰è£…git
 git --version
 if %ERRORLEVEL% equ 0 (
     goto have_git
@@ -53,7 +55,7 @@ if %ERRORLEVEL% equ 0 (
 
 :have_git
 :test_is_git_repo
-call :color_green ¼ì²é´ËÎÄ¼ş¼ĞÊÇ·ñÊÇgit¿â
+call :color_green æ£€æŸ¥æ­¤æ–‡ä»¶å¤¹æ˜¯å¦æ˜¯gitåº“
 git remote -v
 if %ERRORLEVEL% equ 0 (
     goto is_a_repo
@@ -62,47 +64,47 @@ if %ERRORLEVEL% equ 0 (
 )
 
 :is_a_repo
-call :color_green ÏÖÔÚ¼ì²éremoteµØÖ·ÉèÖÃ
+call :color_green ç°åœ¨æ£€æŸ¥remoteåœ°å€è®¾ç½®
 git remote -v >nul 2>nul
 git config remote.origin.url %repo_url1%
 git config remote.origin.pushurl %push_url%
 git remote -v
-call :color_green À­È¡Ô¶³Ì´úÂë£¨ÈçÔÚ´Ë¿¨×¡10ÃëÒÔÉÏ¿É¹Ø±ÕÖØĞÂ´ò¿ª£©
+call :color_green æ‹‰å–è¿œç¨‹ä»£ç ï¼ˆå¦‚åœ¨æ­¤å¡ä½10ç§’ä»¥ä¸Šå¯å…³é—­é‡æ–°æ‰“å¼€ï¼‰
 git fetch
-call :color_green Ôİ´æĞŞ¸Ä
+call :color_green æš‚å­˜ä¿®æ”¹
 git stash save "pull_auto_stash"
-call :color_green ¸üĞÂ...£¨ÈçÔÚ´Ë¿¨×¡10ÃëÒÔÉÏ¿É¹Ø±ÕÖØĞÂ´ò¿ª£©
+call :color_green æ›´æ–°...ï¼ˆå¦‚åœ¨æ­¤å¡ä½10ç§’ä»¥ä¸Šå¯å…³é—­é‡æ–°æ‰“å¼€ï¼‰
 git pull --rebase
-call :color_green »Ö¸´ĞŞ¸Ä
+call :color_green æ¢å¤ä¿®æ”¹
 git stash pop
-git checkout windowsÏµÍ³git_pull_Ò»¼ü¸üĞÂ.bat
-call :color_green Íê³É
+git checkout windowsç³»ç»Ÿgit_pull_ä¸€é”®æ›´æ–°.bat
+call :color_green å®Œæˆ
 goto end
 
 
 :git_init
-call :color_green ÏÂÔØ×îĞÂ´úÂëµ½TechXuexi-master-cloneÎÄ¼ş¼Ğ
+call :color_green ä¸‹è½½æœ€æ–°ä»£ç åˆ°TechXuexi-master-cloneæ–‡ä»¶å¤¹
 git clone -b master %repo_url1% TechXuexi-master-clone
 if %ERRORLEVEL% equ 0 (
-	call :color_green ¸´ÖÆÓÃ»§Êı¾İÎÄ¼ş...
+	call :color_green å¤åˆ¶ç”¨æˆ·æ•°æ®æ–‡ä»¶...
 	xcopy /E /V /K /I /Y /Q SourcePackages\user TechXuexi-master-clone\SourcePackages\user
 	xcopy /E /V /K /I /Y /Q SourcePackages\chrome TechXuexi-master-clone\SourcePackages\chrome
 	echo. >_unavailable_dir
-	call :color_green Íê³É.
+	call :color_green å®Œæˆ.
 	call :replace_dir
 	goto end
 ) else (
-	call :color_red ³öÏÖ´íÎó£¡Çë·´À¡´ËÎÊÌâ£ºgit_clone_³ö´í
+	call :color_red å‡ºç°é”™è¯¯ï¼è¯·åé¦ˆæ­¤é—®é¢˜ï¼šgit_clone_å‡ºé”™
 	goto end
 )
 
 :not_have_git
-call :color_yellow ÕÒ²»µ½git£¬Çë×ÔĞĞËÑË÷°²×°gitºóÔÙ´ò¿ªÔËĞĞ¡£
+call :color_yellow æ‰¾ä¸åˆ°gitï¼Œè¯·è‡ªè¡Œæœç´¢å®‰è£…gitåå†æ‰“å¼€è¿è¡Œã€‚
 goto end
 
 
 
 
 :end
-set/p=°´»Ø³µ¼üÍË³ö³ÌĞò...
+set/p=æŒ‰å›è½¦é”®é€€å‡ºç¨‹åº...
 
